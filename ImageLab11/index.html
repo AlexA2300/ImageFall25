@@ -1,15 +1,176 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <script src="https://aframe.io/releases/1.7.1/aframe.min.js"> </script>
-  </head>
-  <body>
-    <a-scene>
-      <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
-      <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
-      <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
-      <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
-      <a-sky color="#ECECEC"></a-sky>
-    </a-scene>
-  </body>
+
+<head>
+  <script src="https://aframe.io/releases/1.7.1/aframe.min.js"> </script>
+  <script src="https://unpkg.com/aframe-environment-component/dist/aframe-environment-component.min.js"></script>
+  <script
+    src="https://cdn.jsdelivr.net/gh/c-frame/aframe-particle-system-component@1.2.0/dist/aframe-particle-system-component.min.js"></script>
+</head>
+
+<body>
+  <a-scene>
+
+    <a-assets>
+      <img id="sky" src="https://i.postimg.cc/k52hYJr8/starry361.png" crossorigin="anonymous">
+      <img id="painting" src="https://i.postimg.cc/VLNppQCF/Starry-Night-Church.jpg" crossorigin="anonymous">
+      <img id="wood" src="https://i.postimg.cc/RVzwcGGt/Birch-Wood-Texture-Background-edit-online.png"
+        crossorigin="anonymous">
+      <img id="frame" src="https://i.postimg.cc/mkZzFWm0/Screenshot-2025-11-19-at-2-43-09-PM.png"
+        crossorigin="anonymous">
+    </a-assets>
+
+    <a-entity camera look-controls position="100 1.6 200">
+
+      <!-- paint palette -->
+      <a-entity id="held-palette" position="0.25 -0.25 -0.4" rotation="30 -15 0">
+        <a-cylinder position="0 0 0" radius="0.18" height="0.015" scale="1 1 0.7" color="#8d4908"
+          material="roughness: 0.95; side: double">
+        </a-cylinder>
+        <a-cylinder position="0 0.001 0" radius="0.175" height="0.002" scale="1 1 0.7" color="#8d4908"
+          material="roughness: 0.85; opacity: 0.4; side: double">
+        </a-cylinder>
+        <a-cylinder position="0.13 0 0.001" radius="0.025" height="0.02" color="#2c2416" material="roughness: 1">
+        </a-cylinder>
+
+        <!-- PAINT BLOBS -->
+        <a-sphere position="-0.08 0.01 0.04" radius="0.025" scale="1.2 0.4 1.2" color="#151e2f"
+          material="roughness: 0.3; metalness: 0.1">
+        </a-sphere>
+        <a-sphere position="-0.05 0.01 -0.02" radius="0.02" scale="1.3 0.5 1.3" color="#123f77"
+          material="roughness: 0.3; metalness: 0.1">
+        </a-sphere>
+        <a-sphere position="-0.09 0.01 -0.03" radius="0.018" scale="1.1 0.6 1.1" color="#2f3774"
+          material="roughness: 0.3; metalness: 0.1">
+        </a-sphere>
+        <a-sphere position="-0.02 0.01 0.05" radius="0.022" scale="1.4 0.5 1.2" color="#0f86b6"
+          material="roughness: 0.3; metalness: 0.1">
+        </a-sphere>
+        <a-sphere position="0.03 0.01 0.04" radius="0.015" scale="1.2 0.4 1.2" color="#37cae5"
+          material="roughness: 0.2; metalness: 0.2">
+        </a-sphere>
+        <a-sphere position="0.06 0.012 0.01" radius="0.028" scale="1.5 0.6 1.5" color="#f5db37"
+          material="roughness: 0.25; metalness: 0.15">
+        </a-sphere>
+        <a-sphere position="0.05 0.01 -0.04" radius="0.02" scale="1.3 0.5 1.3" color="#feeb54"
+          material="roughness: 0.2; metalness: 0.15">
+        </a-sphere>
+        <a-box position="0.09 0.01 -0.02" width="0.04" height="0.003" depth="0.015" rotation="0 25 0" color="#fbefcb"
+          material="roughness: 0.4; metalness: 0.05">
+        </a-box>
+        <a-sphere position="0 0.012 0" radius="0.025" scale="1.6 0.5 1.6" color="#ffffff"
+          material="roughness: 0.35; metalness: 0">
+        </a-sphere>
+        <a-sphere position="-0.05 0.01 0.03" radius="0.018" scale="1.2 0.4 1.2" color="#1a2611"
+          material="roughness: 0.4; metalness: 0">
+        </a-sphere>
+        <a-box position="0.02 0.009 -0.01" width="0.05" height="0.002" depth="0.008" rotation="0 -30 0" color="#4a6b8a"
+          material="roughness: 0.5; opacity: 0.7">
+        </a-box>
+        <a-box position="-0.03 0.009 0.01" width="0.03" height="0.002" depth="0.006" rotation="0 45 0" color="#7a9445"
+          material="roughness: 0.5; opacity: 0.6">
+        </a-box>
+
+        <!-- palette knife -->
+        <a-entity position="0.12 0.01 0.03" rotation="0 -20 10">
+          <a-box position="0 0 0" width="0.06" height="0.001" depth="0.015" color="#c0c0c0"
+            material="metalness: 0.9; roughness: 0.2">
+          </a-box>
+          <a-box position="0.04 0 0" width="0.03" height="0.003" depth="0.008" color="#8d4908"
+            material="roughness: 0.8">
+          </a-box>
+          <a-box position="-0.01 0.001 0" width="0.02" height="0.001" depth="0.01" color="#2f3774"
+            material="roughness: 0.3; opacity: 0.8">
+          </a-box>
+        </a-entity>
+
+      </a-entity>
+
+    </a-entity>
+
+    <a-sky src="#sky"></a-sky>
+
+    <!-- star particles -->
+    <a-entity position="100 40 200" particle-system="
+          preset: dust;
+          color: #f5db37, #feeb54, #fbefcb;
+          particleCount: 5000;
+          maxAge: 8;
+          size: 3, 2, 1;
+          velocityValue: 0.5 0 0.5;
+          velocitySpread: 1 0.5 1;
+          rotationAngle: 3.14;
+          opacity: 0.7, 0.25, 0" animation="
+          property: rotation;
+          to: 0 360 0;
+          dur: 300000;
+          loop: true;
+          easing: linear">
+    </a-entity>
+
+    <!-- canvas particles -->
+    <a-entity position="100 1 199" rotation="0 90 0" particle-system="
+          preset: dust;
+          color: #8f1bf5, #d736ff, #003cbf;
+          particleCount: 2000;
+          maxAge: 100;
+          size: 0.3, 0.2, 0.1;
+          positionSpread: 1 0 1;
+          velocityValue: 0.1 0 0.1;
+          velocitySpread: 0.3 0.1 0.3;
+          rotationAngle: 3.14;
+          opacity: 1, 0.8, 0.5;">
+    </a-entity>
+
+    <!-- easel and canvas -->
+    <a-entity id="easel-with-canvas" position="100 0.2 199" rotation="0 190 0">
+
+      <a-cylinder src="#wood" position="-0.3 0 0" radius="0.02" height="1.4" rotation="0 0 5" color="#8d4908"
+        material="roughness: 0.9">
+      </a-cylinder>
+      <a-cylinder src="#wood" position="0.3 0 0" radius="0.02" height="1.4" rotation="0 0 -5" color="#8d4908"
+        material="roughness: 0.9">
+      </a-cylinder>
+      <a-cylinder src="#wood" position="0 0.4 0.35" radius="0.02" height="2" rotation="-15 0 0" color="#8d4908"
+        material="roughness: 0.9">
+      </a-cylinder>
+      <a-box position="0 0.6 -0.05" width="0.8" height="0.04" depth="0.1" color="#8d4908" material="roughness: 0.9">
+      </a-box>
+      <a-box position="0 0.62 -0.08" width="0.7" height="0.02" depth="0.02" color="#8d4908" material="roughness: 0.9">
+      </a-box>
+
+      <!-- CANVAS WITH FRAME -->
+      <a-entity position="0 1.05 -0.03" rotation="5 0 0">
+        <a-box src="#frame" position="0 0.4 0" width="0.65" height="0.05" depth="0.04" color="#9d8b1b"
+          material="roughness: 0.95">
+        </a-box>
+        <a-box src="#frame" rotation="180 0 0" position="0 -0.4 0" width="0.65" height="0.05" depth="0.04"
+          color="#9d8b1b" material="roughness: 0.95">
+        </a-box>
+        <a-box src="#frame" position="-0.3 0 0" width="0.05" height="0.85" depth="0.03" color="#9d8b1b"
+          material="roughness: 0.95">
+        </a-box>
+        <a-box src="#frame" position="0.3 0 0" width="0.05" height="0.85" depth="0.03" color="#9d8b1b"
+          material="roughness: 0.95">
+        </a-box>
+
+        <a-plane src="#painting" position="0 0 0.01" width="0.55" height="0.75" color="#fbefcb"
+          material="roughness: 1; side: double">
+        </a-plane>
+        <a-plane position="0 0 0.011" width="0.55" height="0.75" color="#f8f4e6"
+          material="roughness: 1; opacity: 0.3; side: double">
+        </a-plane>
+
+      </a-entity>
+
+      <a-box src="#wood" position="0.45 0.5 0" width="0.15" height="0.02" depth="0.1" color="#8d4908"
+        material="roughness: 0.9">
+      </a-box>
+      <a-box src="#wood" position="0 0.3 0.1" width="0.05" height="0.03" depth="0.4" rotation="0 0 0" color="#8d4908"
+        material="roughness: 0.95">
+      </a-box>
+    </a-entity>
+  </a-scene>
+</body>
+
 </html>
